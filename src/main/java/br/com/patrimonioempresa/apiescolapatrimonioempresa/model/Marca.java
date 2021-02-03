@@ -61,4 +61,9 @@ public class Marca {
 		return true;
 	}
 
+	public void updateMarca(Marca marcaByForm) {
+		this.nome = marcaByForm.getNome();
+		
+	}
+
 }

@@ -2,6 +2,7 @@ package br.com.patrimonioempresa.apiescolapatrimonioempresa.service.marca;
 
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.exception.BusinessException;
@@ -18,8 +19,8 @@ public class MarcaSpringDataJPAServiceImpl implements MarcaService {
 	public MarcaSpringDataJPAServiceImpl(MarcaRepository marcaRepository) {
 		this.marcaRepository = marcaRepository;
 	}
-	
-	public List<Marca> findAll(){
+
+	public List<Marca> findAll() {
 		log.info("Starting Method findAll in MarcaSpringDataJPAServiceImpl");
 		List<Marca> listMarca = this.marcaRepository.findAll();
 		log.info("finishing Method findAll in  ALunoSpringDataJPAService");
@@ -27,27 +28,54 @@ public class MarcaSpringDataJPAServiceImpl implements MarcaService {
 	}
 
 	@Override
-	public Marca findById(Integer marcaID) {
+	public Marca findById(Integer marcaId) {
 		log.info("Starting Method findById in MarcaSpringDataJPAService");
-		log.info("Parameter:{}", marcaID);
+		log.info("Parameter:{}", marcaId);
 		log.info("Finding Escola by id on MarcaRepository");
 		Marca marca = null;
 		try {
-			 marca = this.marcaRepository.findById(marcaID).orElseThrow(() -> new BusinessException(" A marca não existe"));
+			marca = this.marcaRepository.findById(marcaId)
+					.orElseThrow(() -> new BusinessException(" A marca não existe"));
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		};
+		}
+		;
 		return marca;
 	}
 
 	@Override
 	public Marca save(Marca marca) {
-		log.info("Starting Method save in ALunoSpringDataJPAService");
+		log.info("Starting Method save in MarcaSpringDataJPAService");
 		marca = this.marcaRepository.save(marca);
-		log.info("Finishing Method save in ALunoSpringDataJPAService");
+		log.info("Finishing Method save in MarcaSpringDataJPAService");
 		return marca;
 	}
 
-	
+	@Override
+	public Marca update(Integer marcaId, Marca marcaByForm) {
+
+		log.info("Starting Method update in MarcaSpringDataJPAService");
+		Marca marcaById = findById(marcaId);
+		marcaById.updateMarca(marcaByForm);
+		log.info("Save in MarcaRepository");
+		this.marcaRepository.save(marcaById);
+		log.info("Finishing Method save in MarcaSpringDataJPAService");
+		return marcaById;
+	}
+
+	@Override
+	public void delete(Integer marcaId) {
+		log.info("Starting Method Delete in MarcaSpringDataJPAService");
+		log.info("Parameter:Marca Id = {},", marcaId);
+		findById(marcaId);
+		log.info("Deleting marca by id on MarcaRepository");
+		try {
+			marcaRepository.deleteById(marcaId);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Não é possível excluir");
+		}
+		log.info("Finishing Method deleteById in MarcaSpringDataJPAService");
+	}
+
 }
