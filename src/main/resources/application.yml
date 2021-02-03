@@ -1,0 +1,29 @@
+server:
+  servlet:
+    context-path: /escola/app
+
+spring:
+  datasource:
+    driver-class-name: ${ESCOLA_DB_DRIVER:org.h2.Driver}
+    url: ${ESCOLA_DB_URL:jdbc:h2:mem:escola-test}
+    username: ${ESCOLA_DB_USERNAME:sa}
+    password: ${ESCOLA_DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      
+security:
+  jwt:
+    token:
+      secret-key: A+X;fTJP&Pd,TD9dwVq(hsHX,ya^<wsD_UK7L+@=S;{'CydP]{v@}G'b>et;yz$*\yL5S8EJN:%P:X%H9>#nYLrX}@\s?CQcpspH,2emzBc!Q[V'AYa~uzF8WR~AUrMzxp/V$9([S9X#zj/CH('#]B_Hc+%fGhe27YB;^j4\Xk=Ju"Ap~_&<L;=!Z;!,2UP;!hF3P]j85#*`&T]/kB/W^6$v~u6qpejL>kY^f)sy4:qTq_Ec!-z!@aAp~sLKGU>$
+      expire-length: 86400000 # 1 day duration
+      
+      
