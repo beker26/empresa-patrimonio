@@ -1,5 +1,6 @@
 package br.com.patrimonioempresa.apiescolapatrimonioempresa.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +14,12 @@ public class Marca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column(unique = true)
 	private String nome;
+	
+	public Marca() {}
 
 	public Marca(String nome) {
-		super();
 		this.nome = nome;
 	}
 

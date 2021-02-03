@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /escola/app
+    context-path: /empresa/app
 
 spring:
   datasource:
