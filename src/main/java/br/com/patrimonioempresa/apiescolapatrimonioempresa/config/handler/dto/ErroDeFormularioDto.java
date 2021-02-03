@@ -1,4 +1,4 @@
-package br.com.secretariadeeducacao.apiescolasecretariadeeducacao.config.handler.dto;
+package br.com.patrimonioempresa.apiescolapatrimonioempresa.config.handler.dto;
 
 public class ErroDeFormularioDto {
 
