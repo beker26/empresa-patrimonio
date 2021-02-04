@@ -94,6 +94,11 @@ public class Patrimonio {
 			return false;
 		return true;
 	}
+
+	public void updatePatrimonio(Patrimonio patrimonioForm) {
+		this.nome = patrimonioForm.getNome();
+		this.descricao = patrimonioForm.getDescricao();
+	}
 	
 	
 	

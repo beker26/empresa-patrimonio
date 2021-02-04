@@ -31,7 +31,7 @@ public class MarcaSpringDataJPAServiceImpl implements MarcaService {
 	public Marca findById(Integer marcaId) {
 		log.info("Starting Method findById in MarcaSpringDataJPAService");
 		log.info("Parameter:{}", marcaId);
-		log.info("Finding Escola by id on MarcaRepository");
+		log.info("Finding Marca by id on MarcaRepository");
 		Marca marca = null;
 		try {
 			marca = this.marcaRepository.findById(marcaId)
@@ -40,15 +40,15 @@ public class MarcaSpringDataJPAServiceImpl implements MarcaService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		log.info("Finishing Method findById in MarcaSpringDataJPAService");
 		return marca;
 	}
 
 	@Override
 	public Marca save(Marca marca) {
 		log.info("Starting Method save in MarcaSpringDataJPAService");
-		marca = this.marcaRepository.save(marca);
 		log.info("Finishing Method save in MarcaSpringDataJPAService");
-		return marca;
+		return this.marcaRepository.save(marca);
 	}
 
 	@Override
