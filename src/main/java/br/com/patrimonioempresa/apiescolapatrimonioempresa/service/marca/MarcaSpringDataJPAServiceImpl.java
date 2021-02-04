@@ -40,7 +40,6 @@ public class MarcaSpringDataJPAServiceImpl implements MarcaService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		;
 		return marca;
 	}
 

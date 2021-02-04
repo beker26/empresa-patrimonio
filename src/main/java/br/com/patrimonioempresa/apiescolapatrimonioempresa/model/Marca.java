@@ -16,8 +16,9 @@ public class Marca {
 	private Integer id;
 	@Column(unique = true)
 	private String nome;
-	
-	public Marca() {}
+
+	public Marca() {
+	}
 
 	public Marca(String nome) {
 		this.nome = nome;
@@ -66,7 +67,7 @@ public class Marca {
 
 	public void updateMarca(Marca marcaByForm) {
 		this.nome = marcaByForm.getNome();
-		
+
 	}
 
 }

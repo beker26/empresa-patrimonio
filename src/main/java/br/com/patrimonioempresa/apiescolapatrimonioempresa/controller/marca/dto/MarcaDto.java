@@ -19,7 +19,5 @@ public class MarcaDto {
 	public String getNome() {
 		return nome;
 	}
-	
-	
 
 }

@@ -9,25 +9,24 @@ import br.com.patrimonioempresa.apiescolapatrimonioempresa.model.Marca;
 
 public class MarcaForm {
 
-	@NotNull @NotEmpty @Length(min = 6)
+	@NotNull
+	@NotEmpty
+	@Length(min = 1)
 	private String nome;
-	
+
 	public MarcaForm() {
 	}
-	
+
 	public MarcaForm(Marca marca) {
-	 this.nome = marca.getNome();
+		this.nome = marca.getNome();
 	}
 
-	
 	public String getNome() {
 		return nome;
 	}
 
-
-
 	public Marca toMarca() {
-		
+
 		return new Marca(this.getNome());
 	}
 

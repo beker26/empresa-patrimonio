@@ -7,7 +7,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/api-patrimonioempresa
+    url: jdbc:postgresql://localhost:5432/patrimonioempresa
     platform: postgres
     initialization-mode: always
     continue-on-error: true

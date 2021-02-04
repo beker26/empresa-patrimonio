@@ -4,8 +4,16 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -16,7 +24,7 @@ import br.com.patrimonioempresa.apiescolapatrimonioempresa.service.marca.MarcaSe
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-@RequestMapping("/v1/marca")
+@RequestMapping("/v1/patrimonio/{patrimonioId}/marca")
 @Log4j2
 public class MarcaController implements MarcaApi {
 	private MarcaService marcaService;
@@ -25,7 +33,8 @@ public class MarcaController implements MarcaApi {
 		this.marcaService = marcaService;
 	}
 
-	@Override
+	@GetMapping
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<List<MarcaDto>> findAll() {
 		log.info("Starting Method FindAll in MarcaController!");
 		List<Marca> listMarca = this.marcaService.findAll();
@@ -34,7 +43,8 @@ public class MarcaController implements MarcaApi {
 		return ResponseEntity.ok().body(listMarcaDto);
 	}
 
-	@Override
+	@GetMapping(value = "/{alunoId}")
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<MarcaDto> findById(Integer marcaId) {
 		log.info("Starting Method findById in MarcaController!");
 		log.info("Parameter id = {}", marcaId);
@@ -43,26 +53,34 @@ public class MarcaController implements MarcaApi {
 		return ResponseEntity.ok().body(new MarcaDto(marca));
 	}
 
-	@Override
+	@PostMapping
+	@Transactional
 	public ResponseEntity<MarcaDto> save(MarcaForm marcaForm, UriComponentsBuilder uriBuilder) {
 		log.info("Starting Method insert in MarcaController!");
 		log.info("Form: {}", marcaForm);
 		Marca marca = marcaService.save(marcaForm.toMarca());
 		log.info("Finishing Method insert in MarcaController!");
 		URI uri = uriBuilder.path("/marca/{marcaId}").buildAndExpand(marca.getId()).toUri();
-		return ResponseEntity.created(uri).body(new MarcaDto(marca)); 
+		return ResponseEntity.created(uri).body(new MarcaDto(marca));
 	}
 
-	@Override
+	@PutMapping("/{marcaId}")
+	@Transactional
 	public ResponseEntity<MarcaDto> update(Integer marcaId, MarcaForm marcaForm) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Starting Method Update in MarcaController!");
+		log.info("Form: {}", marcaForm);
+		marcaService.update(marcaId, marcaForm.toMarca());
+		log.info("Finishing Method Update in MarcaController!");
+		return ResponseEntity.noContent().build();
 	}
 
-	@Override
+	@DeleteMapping("/{marcaId}")
+	@Transactional
 	public ResponseEntity<Void> delete(Integer marcaId) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Starting Method Delete in MarcaController!");
+		marcaService.delete(marcaId);
+		log.info("Finishing Method Delete in MarcaController!");
+		return ResponseEntity.noContent().build();
 	}
 
 }

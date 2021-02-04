@@ -12,14 +12,14 @@ import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.MarcaForm;
 
 public interface MarcaApi {
-	
+
 	ResponseEntity<List<MarcaDto>> findAll();
-	
+
 	ResponseEntity<MarcaDto> findById(Integer marcaId);
 
-	ResponseEntity<MarcaDto> save(@Validated @RequestBody MarcaForm marcaForm,UriComponentsBuilder  uriBuilder);
-	
+	ResponseEntity<MarcaDto> save(@Validated @RequestBody MarcaForm marcaForm, UriComponentsBuilder uriBuilder);
+
 	ResponseEntity<MarcaDto> update(@PathVariable Integer marcaId, @RequestBody @Validated MarcaForm marcaForm);
-	
+
 	ResponseEntity<Void> delete(@PathVariable Integer marcaId);
 }
