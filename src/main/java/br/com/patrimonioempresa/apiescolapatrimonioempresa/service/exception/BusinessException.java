@@ -1,4 +1,4 @@
-package br.com.patrimonioempresa.apiescolapatrimonioempresa.exception;
+package br.com.patrimonioempresa.apiescolapatrimonioempresa.service.exception;
 
 public class BusinessException extends Exception {
 	

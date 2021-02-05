@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.MarcaDto;
-import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.MarcaForm;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.form.MarcaForm;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.model.Marca;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.service.marca.MarcaService;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-@RequestMapping("/v1/patrimonio/{patrimonioId}/marca")
+@RequestMapping("/v1/marca")
 @Log4j2
 public class MarcaController implements MarcaApi {
 	private MarcaService marcaService;
@@ -43,7 +43,7 @@ public class MarcaController implements MarcaApi {
 		return ResponseEntity.ok().body(listMarcaDto);
 	}
 
-	@GetMapping(value = "/{alunoId}")
+	@GetMapping(value = "/{marcaId}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<MarcaDto> findById(Integer marcaId) {
 		log.info("Starting Method findById in MarcaController!");

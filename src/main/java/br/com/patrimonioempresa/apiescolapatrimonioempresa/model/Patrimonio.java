@@ -11,23 +11,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "patrimonio")
 public class Patrimonio {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String descricao;
 	private Long numeroDoTombo;
 	@ManyToOne
 	@JoinColumn(name = "idMarca")
-	private Marca marca; 
-	
-	public Patrimonio() {}
+	private Marca marca;
 
-	public Patrimonio(String nome, String descricao, Long numeroDoTombo) {
+	public Patrimonio() {
+	}
+
+	public Patrimonio(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
-		this.numeroDoTombo = numeroDoTombo;
+
 	}
 
 	public Integer getId() {
@@ -99,12 +100,11 @@ public class Patrimonio {
 		this.nome = patrimonioForm.getNome();
 		this.descricao = patrimonioForm.getDescricao();
 	}
-	
-	
-	
-	
-    
-	
+
+	public Object getMarcaId() {
+		return this.getMarca().getId();
+	}
+
 	
 
 }

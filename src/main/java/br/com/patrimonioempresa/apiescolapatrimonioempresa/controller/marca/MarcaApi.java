@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.MarcaDto;
-import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.MarcaForm;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.form.MarcaForm;
 
 public interface MarcaApi {
 
 	ResponseEntity<List<MarcaDto>> findAll();
 
-	ResponseEntity<MarcaDto> findById(Integer marcaId);
+	ResponseEntity<MarcaDto> findById(@PathVariable Integer marcaId);
 
 	ResponseEntity<MarcaDto> save(@Validated @RequestBody MarcaForm marcaForm, UriComponentsBuilder uriBuilder);
 

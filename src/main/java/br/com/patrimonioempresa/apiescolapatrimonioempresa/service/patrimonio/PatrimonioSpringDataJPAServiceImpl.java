@@ -6,9 +6,11 @@ import java.util.Random;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.com.patrimonioempresa.apiescolapatrimonioempresa.exception.BusinessException;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.model.Marca;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.model.Patrimonio;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.repository.patrimonio.PatrimonioRepository;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.service.exception.BusinessException;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.service.marca.MarcaService;
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -16,9 +18,11 @@ import lombok.extern.log4j.Log4j2;
 public class PatrimonioSpringDataJPAServiceImpl implements PatrimonioService {
 
 	private PatrimonioRepository patrimonioRepository;
+	private MarcaService marcaService;
 
-	public PatrimonioSpringDataJPAServiceImpl(PatrimonioRepository patrimonioRepository) {
+	public PatrimonioSpringDataJPAServiceImpl(PatrimonioRepository patrimonioRepository,MarcaService marcaService) {
 		this.patrimonioRepository = patrimonioRepository;
+		this.marcaService = marcaService;
 	}
 
 	@Override
@@ -47,11 +51,12 @@ public class PatrimonioSpringDataJPAServiceImpl implements PatrimonioService {
 	}
 
 	@Override
-	public Patrimonio save(Patrimonio patrimonio) {
+	public Patrimonio save(Integer marcaId, Patrimonio patrimonio) {
 		log.info("Starting Method save in PatrimonioSpringDataJPAService");
 		log.info("Generating the number of the tumble in PatrimonioSpringDataJPAService");
+		Marca marcaById = marcaService.findById(marcaId);
+		patrimonio.setMarca(marcaById);
 		numeroDoTombo(patrimonio);
-		log.info("The number of the generated tumble is:", patrimonio.getNumeroDoTombo());
 		log.info("Finishing Method save in PatrimonioSpringDataJPAService");
 		return patrimonioRepository.save(patrimonio);
 	}

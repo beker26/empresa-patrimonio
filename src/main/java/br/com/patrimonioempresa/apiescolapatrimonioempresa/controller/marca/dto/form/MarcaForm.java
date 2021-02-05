@@ -1,4 +1,4 @@
-package br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto;
+package br.com.patrimonioempresa.apiescolapatrimonioempresa.controller.marca.dto.form;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

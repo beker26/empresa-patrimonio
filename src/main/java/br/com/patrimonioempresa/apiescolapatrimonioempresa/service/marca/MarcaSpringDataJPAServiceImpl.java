@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import br.com.patrimonioempresa.apiescolapatrimonioempresa.exception.BusinessException;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.model.Marca;
 import br.com.patrimonioempresa.apiescolapatrimonioempresa.repository.marca.MarcaRepository;
+import br.com.patrimonioempresa.apiescolapatrimonioempresa.service.exception.BusinessException;
 import lombok.extern.log4j.Log4j2;
 
 @Service

@@ -12,7 +12,7 @@ public interface PatrimonioService {
 
 	Patrimonio findById(Integer patrimonioId);
 
-	Patrimonio save(Patrimonio patrimonio);
+	Patrimonio save(Integer marcaId, Patrimonio patrimonio);
 
 	Patrimonio update(Integer patrimonioId, Patrimonio patrimonioForm);
 
