@@ -63,7 +63,7 @@ public class PatrimonioSpringDataJPAServiceImpl implements PatrimonioService {
 
 	private void numeroDoTombo(Patrimonio patrimonio) {
 		Random random = new Random();
-		Long numeroDoTombo = Long.valueOf(random.nextInt(1000000000));
+		Long numeroDoTombo = Long.valueOf(random.nextInt(9));
 		patrimonio.setNumeroDoTombo(numeroDoTombo);
 	}
 
